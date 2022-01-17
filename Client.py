@@ -218,21 +218,16 @@ class Game:
 
     def partitaVeloce(self):           #funzione che fa partire la partita veloce
         self.run = True
-        self.domanda = self.ClientSocket.recv(1024)
-        self.domanda = textwrap.wrap(self.domanda.decode('utf-8'),width=40)
-        print(self.domanda)
-        self.risp_a = self.ClientSocket.recv(1024)
-        self.risp_a = textwrap.wrap(self.risp_a.decode('utf-8'),width = 40)
-        print(self.risp_a)
-        self.risp_b = self.ClientSocket.recv(1024)
-        self.risp_b = textwrap.wrap(self.risp_b.decode('utf-8'),width = 40)
-        print(self.risp_b)
-        self.risp_c = self.ClientSocket.recv(1024)
-        self.risp_c = textwrap.wrap(self.risp_c.decode('utf-8'),width = 40)
-        print(self.risp_c)
-        self.risp_d = self.ClientSocket.recv(1024)
-        self.risp_d = textwrap.wrap(self.risp_d.decode('utf-8'),width = 40)
-        print(self.risp_d)
+        self.domanda = self.ClientSocket.recv(2048).decode('utf-8')
+        self.domanda = textwrap.wrap(self.domanda,width = 30)
+        self.risp_a = self.ClientSocket.recv(2048).decode('utf-8')#ricevo la prima risposta dal server
+        self.risp_a = textwrap.wrap(self.risp_a,width = 40)
+        self.risp_b = self.ClientSocket.recv(2048).decode('utf-8')#ricevo la seconda risposta dal server
+        self.risp_b = textwrap.wrap(self.risp_b,width = 40)
+        self.risp_c = self.ClientSocket.recv(2048).decode('utf-8')#ricevo la terza risposta dal server
+        self.risp_c = textwrap.wrap(self.risp_c,width = 40)
+        self.risp_d = self.ClientSocket.recv(2048).decode('utf-8')#ricevo la quarta risposta dal server
+        self.risp_d = textwrap.wrap(self.risp_d,width = 40)
         while self.run:
             self.clock.tick(FPS)
             for event in pygame.event.get():        
@@ -244,6 +239,21 @@ class Game:
 
     def drawPartitaVeloce(self):
         WIN.fill(LIGHT_PINK)
+        for i in range(len(self.domanda)):
+            self.txt_domanda = FONT_NEONLED.render(self.domanda[i], True, LIGHT_BLUE)
+            WIN.blit(self.txt_domanda,(300, 200-(50*(len(self.domanda)-i+1))))
+        for i in range(len(self.risp_a)):
+            self.txt_risp_a = FONT_NEONLED_PULSANTI.render(self.risp_a[i], True, LIGHT_BLUE)
+            WIN.blit(self.txt_risp_a,(300, 400-(50*(len(self.risp_a)-i+1))))
+        for i in range(len(self.risp_b)):
+            self.txt_risp_b = FONT_NEONLED_PULSANTI.render(self.risp_b[i], True, LIGHT_BLUE)
+            WIN.blit(self.txt_risp_b,(300, 500-(50*(len(self.risp_b)-i+1))))
+        for i in range(len(self.risp_c)):
+            self.txt_risp_c = FONT_NEONLED_PULSANTI.render(self.risp_c[i], True, LIGHT_BLUE)
+            WIN.blit(self.txt_risp_c,(300, 600-(50*(len(self.risp_c)-i+1))))
+        for i in range(len(self.risp_d)):
+            self.txt_risp_d = FONT_NEONLED_PULSANTI.render(self.risp_d[i], True, LIGHT_BLUE)
+            WIN.blit(self.txt_risp_d,(300, 700-(50*(len(self.risp_d)-i+1))))
         pygame.display.update()
 
 

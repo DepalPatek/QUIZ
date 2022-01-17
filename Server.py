@@ -34,13 +34,13 @@ def threaded_client(connection):
                     c = random.choice(domandList)
                     domandainvio = mylist[c]
                     domandList.remove(c)
-                    connection.send(str.encode(domandainvio))
+                    connection.send(domandainvio.encode('utf-8'))
                     b = c
                     for x in range(4):
                             b= b +1
                             inviorisposta = mylist[b]
                             print(inviorisposta + str(x))
-                            connection.send(str.encode(inviorisposta))
+                            connection.send(inviorisposta.encode('utf-8'))
                     veraRisp = mylist[c+5]
                     b = c
                     controlloRisp = connection.recv(2048)
