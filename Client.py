@@ -218,22 +218,32 @@ class Game:
 
     def partitaVeloce(self):           #funzione che fa partire la partita veloce
         self.run = True
+        self.domanda = self.ClientSocket.recv(1024)
+        self.domanda = textwrap.wrap(self.domanda.decode('utf-8'),width=40)
+        print(self.domanda)
+        self.risp_a = self.ClientSocket.recv(1024)
+        self.risp_a = textwrap.wrap(self.risp_a.decode('utf-8'),width = 40)
+        print(self.risp_a)
+        self.risp_b = self.ClientSocket.recv(1024)
+        self.risp_b = textwrap.wrap(self.risp_b.decode('utf-8'),width = 40)
+        print(self.risp_b)
+        self.risp_c = self.ClientSocket.recv(1024)
+        self.risp_c = textwrap.wrap(self.risp_c.decode('utf-8'),width = 40)
+        print(self.risp_c)
+        self.risp_d = self.ClientSocket.recv(1024)
+        self.risp_d = textwrap.wrap(self.risp_d.decode('utf-8'),width = 40)
+        print(self.risp_d)
         while self.run:
             self.clock.tick(FPS)
             for event in pygame.event.get():        
                 if event.type == pygame.QUIT:           #controlllo se il giocatore chiude la finestra
                     self.ClientSocket.close()           #chiudo il socket
                     pygame.quit()
-                if self.puls_ind.premuto(event) == True:
-                    self.run = False
-                    self.menuPrincipale()
-            self.puls_ind.mouseSopra()
             self.drawPartitaVeloce()
 
 
     def drawPartitaVeloce(self):
         WIN.fill(LIGHT_PINK)
-        self.puls_ind.drawPuls()
         pygame.display.update()
 
 

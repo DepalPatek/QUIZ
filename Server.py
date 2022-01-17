@@ -29,7 +29,7 @@ def threaded_client(connection):
             i = 0
             while i < 10 :
                     i = i +1
-                    with open('domande.txt') as f:
+                    with open(os.path.join('Files','domande.txt')) as f:
                         mylist = list(f)
                     c = random.choice(domandList)
                     domandainvio = mylist[c]
@@ -39,14 +39,15 @@ def threaded_client(connection):
                     for x in range(4):
                             b= b +1
                             inviorisposta = mylist[b]
+                            print(inviorisposta + str(x))
                             connection.send(str.encode(inviorisposta))
                     veraRisp = mylist[c+5]
                     b = c
                     controlloRisp = connection.recv(2048)
                     if controlloRisp.decode('utf-8') == veraRisp:
-                        connection.send(str.encode(Giusto))
+                        connection.send(str.encode("Giusto"))
                     elif controlloRisp.decode('utf-8') != veraRisp:
-                        connection.send(str.encode(Falso))  
+                        connection.send(str.encode("Falso"))  
         
         elif whatToDo.decode('utf-8') == "3" :
             file = open("score.txt","r")
