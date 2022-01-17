@@ -23,20 +23,31 @@ def threaded_client(connection):
     threaded_client.name = connection.recv(2048)
     print("\nClient name: " + str(threaded_client.name.decode('utf-8')))
     while True:
-        flag = 0
-        reply = random.choice(mylist)
-        connection.send(str.encode(reply))
-        data = connection.recv(2048)
-        with open("risposte.txt", "r") as file:
-            for line in file:
-                line = line.split(",")
-                if data.decode('utf-8') == line[0]:
-                    flag = 1
-                    reply = 'yay poggers'
-                    connection.send(str.encode(reply))
-        if flag ==0:
-            reply = 'Not that poggers'
-            connection.sendall(str.encode(reply))
+        whatToDo = connection.recv(2048)
+        if whatToDo == 1 :
+            domandList = [0, 6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72]
+            i = 0
+            while i < 10 :
+                    i = i +1
+                    with open('domande.txt') as f:
+                        mylist = list(f)
+                    c = random.choice(domandList)
+                    domandainvio = mylist[c]
+                    domandList.remove(c)
+                    connection.send(str.encode(domandainvio))
+                    b = c
+                    for x in range(4):
+                            b= b +1
+                            inviorisposta = mylist[b]
+                            connection.send(str.encode(inviorisposta))
+                    veraRisp = mylist[c+5]
+                    b = c
+                    controlloRisp = connection.recv(2048)
+                    if controlloRisp.decode('utf-8') == veraRisp:
+                        connection.send(str.encode(Giusto))
+                    elif controlloRisp.decode('utf-8') != veraRisp:
+                        connection.send(str.encode(Falso))  
+
 
 
 while True:
@@ -46,5 +57,3 @@ while True:
     ThreadCount += 1
     print('Thread Number: ' + str(ThreadCount) )
 ServerSocket.close()
-
-print("ciao")
