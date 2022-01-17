@@ -22,6 +22,7 @@ def threaded_client(connection):
     print("\nClient name: " + str(threaded_client.name.decode('utf-8')))
     while True:
         whatToDo = connection.recv(2048)
+       
         if whatToDo.decode('utf-8') == "1" :
             domandList = [0, 6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72]
             i = 0
@@ -45,8 +46,15 @@ def threaded_client(connection):
                         connection.send(str.encode(Giusto))
                     elif controlloRisp.decode('utf-8') != veraRisp:
                         connection.send(str.encode(Falso))  
-        elif whatToDo.decode('utf-8') == "2" :
-
+        
+        elif whatToDo.decode('utf-8') == "3" :
+            file = open("score.txt","r")
+            readthefile = file.readlines()
+            sortedData = sorted(readthefile,reverse=True)
+            print("Top 3 scores!")
+            print("Pos\tPoints\tName")
+            for line in range(3):
+                print(str(line+1)+"\t "+str(sortedData[line].replace(',','')))
 
 
 
