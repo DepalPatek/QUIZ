@@ -46,3 +46,5 @@ while True:
     ThreadCount += 1
     print('Thread Number: ' + str(ThreadCount) )
 ServerSocket.close()
+
+print("ciao")
