@@ -45,6 +45,8 @@ def threaded_client(connection):
                         connection.send(str.encode(Giusto))
                     elif controlloRisp.decode('utf-8') != veraRisp:
                         connection.send(str.encode(Falso))  
+        elif whatToDo.decode('utf-8') == "2" :
+
 
 
 
