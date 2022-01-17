@@ -4,7 +4,6 @@ import os
 import socket
 import cv2
 import textwrap
-import imutils
 pygame.font.init()
 pygame.mixer.init()
 
