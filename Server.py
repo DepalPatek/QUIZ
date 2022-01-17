@@ -21,6 +21,7 @@ def threaded_client(connection):
     threaded_client.name = connection.recv(2048)
     print("\nClient name: " + str(threaded_client.name.decode('utf-8')))
     while True:
+        whatToDo=0
         whatToDo = connection.recv(2048)
        
         if whatToDo.decode('utf-8') == "1" :
