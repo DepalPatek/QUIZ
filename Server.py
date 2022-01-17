@@ -18,13 +18,11 @@ ServerSocket.listen(5)
 
 
 def threaded_client(connection):
-    with open('domande.txt') as f:
-        mylist = list(f)
     threaded_client.name = connection.recv(2048)
     print("\nClient name: " + str(threaded_client.name.decode('utf-8')))
     while True:
         whatToDo = connection.recv(2048)
-        if whatToDo == 1 :
+        if whatToDo.decode('utf-8') == "1" :
             domandList = [0, 6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72]
             i = 0
             while i < 10 :

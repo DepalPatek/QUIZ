@@ -150,6 +150,7 @@ class Game:
         self.puls_class = Pulsanti(480,425,"CLASSIFICA",480+175,425+18)                     #pulsante classifica
         self.puls_esci = Pulsanti(480,525,"ESCI",480+240,525+18)                            #pulsante esci
         self.puls_ind = PulsanteIndietro()                  #pulsante indietro (utilizzato successivamente)
+        self.risp=0
 
         while self.run:
             self.clock.tick(FPS)               
@@ -165,6 +166,8 @@ class Game:
                     self.classifica()
                 if self.puls_gioca_vel.premuto(event) == True:      #controllo se l'utente vuole fare una partita veloce
                     self.run = False
+                    self.risp="1"
+                    self.ClientSocket.send(str.encode(self.risp))
                     self.partitaVeloce()
                 if self.puls_gioca_pers.premuto(event) == True:      #controllo se l'utente vuole fare una partita personalizzata
                     self.run = False
