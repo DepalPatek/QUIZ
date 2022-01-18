@@ -271,7 +271,7 @@ class Game:
     def partitaVeloce(self):           #funzione che fa partire la partita veloce
         self.run = True
         self.domanda = self.ClientSocket.recv(2048).decode('utf-8')
-        self.domanda = textwrap.wrap(self.domanda,width = 30)
+        self.domanda = textwrap.wrap(self.domanda,width = 21)
         self.risp_a = self.ClientSocket.recv(2048).decode('utf-8')#ricevo la prima risposta dal server
         self.risp_a = textwrap.wrap(self.risp_a,width = 40)
         self.risp_b = self.ClientSocket.recv(2048).decode('utf-8')#ricevo la seconda risposta dal server
@@ -280,6 +280,7 @@ class Game:
         self.risp_c = textwrap.wrap(self.risp_c,width = 40)
         self.risp_d = self.ClientSocket.recv(2048).decode('utf-8')#ricevo la quarta risposta dal server
         self.risp_d = textwrap.wrap(self.risp_d,width = 40)
+        self.template_quiz_img = pygame.image.load(os.path.join('Assets','template_quiz.png'))
         while self.run:
             self.clock.tick(FPS)
             for event in pygame.event.get():        
@@ -290,10 +291,10 @@ class Game:
 
 
     def drawPartitaVeloce(self):
-        WIN.fill(LIGHT_PINK)
+        WIN.blit(self.template_quiz_img,(0,0))
         for i in range(len(self.domanda)):
-            self.txt_domanda = FONT_NEONLED.render(self.domanda[i], True, LIGHT_BLUE)       
-            WIN.blit(self.txt_domanda,(300, 200-(50*(len(self.domanda)-i+1))))
+            self.txt_domanda = FONT_NEONLED_SMALL.render(self.domanda[i], True, LIGHT_BLUE)       
+            WIN.blit(self.txt_domanda,(430, 300-(50*(len(self.domanda)-i+1))))
         for i in range(len(self.risp_a)):
             self.txt_risp_a = FONT_NEONLED_PULSANTI.render(self.risp_a[i], True, LIGHT_BLUE)
             WIN.blit(self.txt_risp_a,(300, 400-(50*(len(self.risp_a)-i+1))))
