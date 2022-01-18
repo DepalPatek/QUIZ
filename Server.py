@@ -35,6 +35,7 @@ def threaded_client(connection):
                     c = random.choice(domandList)
                     domandainvio = mylist[c]
                     domandList.remove(c)
+                    time.sleep(0.01)
                     connection.send(domandainvio.encode('utf-8'))
                     b = c
                     for x in range(4):
