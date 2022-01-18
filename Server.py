@@ -2,6 +2,7 @@ import socket
 import os
 from _thread import *
 import random
+import time
 
 ServerSocket = socket.socket()
 host = 'localhost'
@@ -55,7 +56,9 @@ def threaded_client(connection):
             sortedData = sorted(readthefile,reverse=True)
             for line in range(3):
                 classifica = str(sortedData[line])
+                print(classifica)
                 connection.send(classifica.encode('utf-8'))
+                time.sleep(0.2)
 
 
 

@@ -1,9 +1,11 @@
+from cgitb import text
 from string import ascii_letters
 import pygame
 import os
 import socket
 import cv2
 import textwrap
+import sys
 pygame.font.init()
 pygame.mixer.init()
 
@@ -195,15 +197,24 @@ class Game:
 
     def classifica(self):           #funzione che mostra la classifica
         self.run = True
-        self.top = []
-        self.top.clear()
-        for i in range(3):
-            self.top.append(self.ClientSocket.recv(2048).decode('utf-8'))
-            print(self.top[i])
-            #self.app = self.top[i].split(",")
-        for i in range(3):
-            print(self.top[i])
-        self.txt_top=[]
+        self.top_1=self.ClientSocket.recv(2048).decode('utf-8')
+        print(self.top_1, flush=True)
+        self.top_1=str(self.top_1)
+        self.top_1=self.top_1.split(',')
+        self.score_1=self.top_1[0]
+        self.name_1=self.top_1[1]
+        self.top_2=self.ClientSocket.recv(2048).decode('utf-8')
+        print(self.top_2, flush=True)
+        self.top_2=str(self.top_2)
+        self.top_2=self.top_2.split(',')
+        self.score_2=self.top_2[0]
+        self.name_2=self.top_2[1]
+        self.top_3=self.ClientSocket.recv(2048).decode('utf-8')
+        print(self.top_3, flush=True)
+        self.top_3=str(self.top_3)
+        self.top_3=self.top_3.split(',')
+        self.score_3=self.top_3[0]
+        self.name_3=self.top_3[1]
         self.messaggio = "TOP 3"
         self.txt_mess = FONT_NEONLED.render(self.messaggio,True, LIGHT_BLUE)
         while self.run:
@@ -222,11 +233,19 @@ class Game:
     def drawClassifica(self):
         WIN.fill(ULTRAMARINE)
         self.puls_ind.drawPuls()
-        self.txt_top.clear()
         WIN.blit(self.txt_mess,(300,100))
-        for i in range(3):
-            self.txt_top.append(FONT_NEONLED.render(self.top[i],True, LIGHT_BLUE))
-            WIN.blit(self.txt_top[i],(300,200+(i*100)))
+        self.txt_score_1 = FONT_NEONLED_PULSANTI.render(self.score_1, True, LIGHT_BLUE)
+        WIN.blit(self.txt_score_1,(300, 300))
+        self.txt_name_1 = FONT_NEONLED_PULSANTI.render(self.name_1, True, LIGHT_BLUE)
+        WIN.blit(self.txt_name_1,(400, 300))
+        self.txt_score_2 = FONT_NEONLED_PULSANTI.render(self.score_2, True, LIGHT_BLUE)
+        WIN.blit(self.txt_score_2,(300, 400))
+        self.txt_name_2 = FONT_NEONLED_PULSANTI.render(self.name_2, True, LIGHT_BLUE)
+        WIN.blit(self.txt_name_2,(400, 400))
+        self.txt_score_3 = FONT_NEONLED_PULSANTI.render(self.score_3, True, LIGHT_BLUE)
+        WIN.blit(self.txt_score_3,(300, 500))
+        self.txt_name_3 = FONT_NEONLED_PULSANTI.render(self.name_3, True, LIGHT_BLUE)
+        WIN.blit(self.txt_name_3,(400, 500))
         pygame.display.update()
 
 
