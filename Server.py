@@ -26,11 +26,11 @@ def threaded_client(connection):
         whatToDo = connection.recv(2048)
        
         if whatToDo.decode('utf-8') == "1" :
-            domandList = [0, 6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72]
+            domandList = [0, 6, 12, 18, 24, 30, 36, 42, 48, 54]
             i = 0
             while i < 10 :
                     i = i +1
-                    with open(os.path.join('Files','domande.txt')) as f:
+                    with open(os.path.join('Files','Scienza.txt')) as f:
                         mylist = list(f)
                     c = random.choice(domandList)
                     domandainvio = mylist[c]
