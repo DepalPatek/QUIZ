@@ -291,18 +291,6 @@ class Game:
                     self.risposto = True
                     self.risposta = self.risp_a[0]
                     self.controllaRisp()
-                if self.puls_b.premuto(event) == True:
-                    self.risposto = True
-                    self.risposta = self.risp_b[0]
-                    self.controllaRisp()
-                if self.puls_c.premuto(event) == True:
-                    self.risposto = True
-                    self.risposta = self.risp_c[0]
-                    self.controllaRisp()
-                if self.puls_d.premuto(event) == True:
-                    self.risposto = True
-                    self.risposta = self.risp_d[0]
-                    self.controllaRisp()
             self.puls_a.mouseSopra()
             self.puls_b.mouseSopra()
             self.puls_c.mouseSopra()
