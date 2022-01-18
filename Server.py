@@ -40,7 +40,6 @@ def threaded_client(connection):
                     for x in range(4):
                             b= b +1
                             inviorisposta = mylist[b]
-                            print(inviorisposta + str(x))
                             connection.send(inviorisposta.encode('utf-8'))
                     veraRisp = mylist[c+5]
                     veraRisp = veraRisp.rstrip("\n")
