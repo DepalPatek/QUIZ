@@ -239,6 +239,7 @@ class Game:
             for event in pygame.event.get():        
                 if event.type == pygame.QUIT:           #controlllo se il giocatore chiude la finestra
                     self.ClientSocket.close()           #chiudo il socket
+                    print("chiudo")
                     pygame.quit()
                 if self.puls_ind.premuto(event) == True:
                     self.run = False
