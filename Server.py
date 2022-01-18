@@ -48,9 +48,9 @@ def threaded_client(connection):
                     if controlloRisp.decode('utf-8') == veraRisp:
                         print('si')
                         connection.send(str.encode("Giusto"))
-                    elif controlloRisp.decode('utf-8') != veraRisp:
+                    else:
                         print('no')
-                        connection.send(str.encode("Falso"))  
+                        connection.send(str.encode("Sbagliato"))
         
         elif whatToDo.decode('utf-8') == "3" :
             file = open(os.path.join('Files',"score.txt"),"r")
