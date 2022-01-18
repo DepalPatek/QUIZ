@@ -43,12 +43,13 @@ def threaded_client(connection):
                             print(inviorisposta + str(x))
                             connection.send(inviorisposta.encode('utf-8'))
                     veraRisp = mylist[c+5]
+                    veraRisp = veraRisp.rstrip("\n")
                     b = c
                     controlloRisp = connection.recv(2048)
                     if controlloRisp.decode('utf-8') == veraRisp:
                         print('si')
                         connection.send(str.encode("Giusto"))
-                    elif controlloRisp.decode('utf-8') != veraRisp:
+                    else:
                         print('no')
                         connection.send(str.encode("Falso"))  
         
