@@ -163,6 +163,8 @@ class Game:
                     pygame.quit()
                 if self.puls_class.premuto(event) == True:      #controllo se l'utente clicca sulla classifica
                     self.run = False
+                    self.risp="3"
+                    self.ClientSocket.send(str.encode(self.risp))
                     self.classifica()
                 if self.puls_gioca_vel.premuto(event) == True:      #controllo se l'utente vuole fare una partita veloce
                     self.run = False
