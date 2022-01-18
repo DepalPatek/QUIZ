@@ -270,8 +270,52 @@ class Game:
 
     def partitaVeloce(self):           #funzione che fa partire la partita veloce
         self.run = True
+        self.getDalServer()     #prendo le domande dal server
+        self.template_quiz_img = pygame.image.load(os.path.join('Assets','template_quiz.png'))
+        self.puls_a = Pulsanti(150,400,self.risp_a[0],442-(len(self.risp_a[0])*12),400+18)  #creo il primo pulsante
+        self.puls_b = Pulsanti(150,550,self.risp_b[0],442-(len(self.risp_b[0])*12),550+18)  #creo il primo pulsante
+        self.puls_c = Pulsanti(750,400,self.risp_c[0],1042-(len(self.risp_c[0])*12),400+18)  #creo il primo pulsante
+        self.puls_d = Pulsanti(750,550,self.risp_d[0],1042-(len(self.risp_d[0])*12),550+18)  #creo il primo pulsante
+        self.txt_giusto = FONT_NEONLED.render("bravo hai indovinato",True,LIGHT_BLUE)
+        self.txt_sbagliato = FONT_NEONLED.render("no hai sbagliato",True,LIGHT_BLUE)
+        self.risposta = ""
+        self.risposto = False           #True = l'utente ha risposto
+        self.corretto = False           #True = la risposta é corretta
+        while self.run:
+            self.clock.tick(FPS)
+            for event in pygame.event.get():        
+                if event.type == pygame.QUIT:           #controlllo se il giocatore chiude la finestra
+                    self.ClientSocket.close()           #chiudo il socket
+                    pygame.quit()
+                if self.puls_a.premuto(event) == True:
+                    self.risposto = True
+                    self.risposta = self.risp_a[0]
+                    self.controllaRisp()
+            self.puls_a.mouseSopra()
+            self.puls_b.mouseSopra()
+            self.puls_c.mouseSopra()
+            self.puls_d.mouseSopra()
+            self.drawPartitaVeloce()
+
+
+    def drawPartitaVeloce(self):
+        WIN.blit(self.template_quiz_img,(0,0))
+        for i in range(len(self.domanda)):
+            self.txt_domanda = FONT_NEONLED_SMALL.render(self.domanda[i], True, LIGHT_BLUE)       
+            WIN.blit(self.txt_domanda,(475, 275-(45*(len(self.domanda)-i+1))))
+        self.puls_a.drawButton()
+        self.puls_b.drawButton()
+        self.puls_c.drawButton()
+        self.puls_d.drawButton()
+        if self.risposto == True and self.corretto == True:
+            WIN.blit(self.txt_giusto,(700,HEIGHT-100))
+        if self.risposto == True and self.corretto == False:
+            WIN.blit(self.txt_sbagliato,(700,HEIGHT-50))
+        pygame.display.update()
+
+    def getDalServer(self):         #funzione che prende la domanda e le risposte dal server
         self.domanda = self.ClientSocket.recv(2048).decode('utf-8')
-        self.domanda = textwrap.wrap(self.domanda,width = 30)
+        self.domanda = textwrap.wrap(self.domanda,width = 21)
         self.risp_a = self.ClientSocket.recv(2048).decode('utf-8')#ricevo la prima risposta dal server
         self.risp_a = textwrap.wrap(self.risp_a,width = 40)
         self.risp_b = self.ClientSocket.recv(2048).decode('utf-8')#ricevo la seconda risposta dal server
@@ -280,33 +324,11 @@ class Game:
         self.risp_c = textwrap.wrap(self.risp_c,width = 40)
         self.risp_d = self.ClientSocket.recv(2048).decode('utf-8')#ricevo la quarta risposta dal server
         self.risp_d = textwrap.wrap(self.risp_d,width = 40)
-        while self.run:
-            self.clock.tick(FPS)
-            for event in pygame.event.get():        
-                if event.type == pygame.QUIT:           #controlllo se il giocatore chiude la finestra
-                    self.ClientSocket.close()           #chiudo il socket
-                    pygame.quit()
-            self.drawPartitaVeloce()
+
+    def controllaRisp(self):
+        self.ClientSocket.send(str.encode(self.risposta))
 
 
-    def drawPartitaVeloce(self):
-        WIN.fill(LIGHT_PINK)
-        for i in range(len(self.domanda)):
-            self.txt_domanda = FONT_NEONLED.render(self.domanda[i], True, LIGHT_BLUE)       
-            WIN.blit(self.txt_domanda,(300, 200-(50*(len(self.domanda)-i+1))))
-        for i in range(len(self.risp_a)):
-            self.txt_risp_a = FONT_NEONLED_PULSANTI.render(self.risp_a[i], True, LIGHT_BLUE)
-            WIN.blit(self.txt_risp_a,(300, 400-(50*(len(self.risp_a)-i+1))))
-        for i in range(len(self.risp_b)):
-            self.txt_risp_b = FONT_NEONLED_PULSANTI.render(self.risp_b[i], True, LIGHT_BLUE)
-            WIN.blit(self.txt_risp_b,(300, 500-(50*(len(self.risp_b)-i+1))))
-        for i in range(len(self.risp_c)):
-            self.txt_risp_c = FONT_NEONLED_PULSANTI.render(self.risp_c[i], True, LIGHT_BLUE)
-            WIN.blit(self.txt_risp_c,(300, 600-(50*(len(self.risp_c)-i+1))))
-        for i in range(len(self.risp_d)):
-            self.txt_risp_d = FONT_NEONLED_PULSANTI.render(self.risp_d[i], True, LIGHT_BLUE)
-            WIN.blit(self.txt_risp_d,(300, 700-(50*(len(self.risp_d)-i+1))))
-        pygame.display.update()
 
 
 
