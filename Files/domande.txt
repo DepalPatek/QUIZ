@@ -35,7 +35,7 @@ c
 d
 a
 Fino al 1923, come si chiamava la citta' turca di Istanbul?
-GIOCI
+a
 b
 c
 d
@@ -59,7 +59,7 @@ c
 d
 a
 Denominare la catena montuosa piu' estesa (non piu' alta) del mondo?
-POSTREREA
+a
 b
 c
 d
@@ -71,7 +71,7 @@ c
 d
 a
 Il fiume piu' lungo del mondo?
-NON LO SO
+a
 b
 c
 d

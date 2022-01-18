@@ -276,12 +276,21 @@ class Game:
         self.puls_b = Pulsanti(150,550,self.risp_b[0],442-(len(self.risp_b[0])*12),550+18)  #creo il primo pulsante
         self.puls_c = Pulsanti(750,400,self.risp_c[0],1042-(len(self.risp_c[0])*12),400+18)  #creo il primo pulsante
         self.puls_d = Pulsanti(750,550,self.risp_d[0],1042-(len(self.risp_d[0])*12),550+18)  #creo il primo pulsante
+        self.txt_giusto = FONT_NEONLED.render("bravo hai indovinato",True,LIGHT_BLUE)
+        self.txt_sbagliato = FONT_NEONLED.render("no hai sbagliato",True,LIGHT_BLUE)
+        self.risposta = ""
+        self.risposto = False           #True = l'utente ha risposto
+        self.corretto = False           #True = la risposta é corretta
         while self.run:
             self.clock.tick(FPS)
             for event in pygame.event.get():        
                 if event.type == pygame.QUIT:           #controlllo se il giocatore chiude la finestra
                     self.ClientSocket.close()           #chiudo il socket
                     pygame.quit()
+                if self.puls_a.premuto(event) == True:
+                    self.risposto = True
+                    self.risposta = self.risp_a[0]
+                    self.controllaRisp()
             self.puls_a.mouseSopra()
             self.puls_b.mouseSopra()
             self.puls_c.mouseSopra()
@@ -298,6 +307,10 @@ class Game:
         self.puls_b.drawButton()
         self.puls_c.drawButton()
         self.puls_d.drawButton()
+        if self.risposto == True and self.corretto == True:
+            WIN.blit(self.txt_giusto,(700,HEIGHT-100))
+        if self.risposto == True and self.corretto == False:
+            WIN.blit(self.txt_sbagliato,(700,HEIGHT-50))
         pygame.display.update()
 
     def getDalServer(self):         #funzione che prende la domanda e le risposte dal server
@@ -311,6 +324,10 @@ class Game:
         self.risp_c = textwrap.wrap(self.risp_c,width = 40)
         self.risp_d = self.ClientSocket.recv(2048).decode('utf-8')#ricevo la quarta risposta dal server
         self.risp_d = textwrap.wrap(self.risp_d,width = 40)
+
+    def controllaRisp(self):
+        self.ClientSocket.send(str.encode(self.risposta))
+
 
 
 
