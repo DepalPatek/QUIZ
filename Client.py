@@ -20,6 +20,9 @@ ULTRAMARINE = [122,142,205]
 LIGHT_BLUE = [114,202,212]
 LIGHT_PINK = [255, 174, 201]
 DARK_PINK = [238, 58, 162]
+GOLD = [255,215,0]
+SILVER = [192,192,192]
+BRONZE = [205,127,50]
 
 FPS = 60
 
@@ -245,19 +248,19 @@ class Game:
     def drawClassifica(self):
         WIN.blit(self.leaderboard_img,(0,0))
         self.puls_ind.drawPuls()
-        WIN.blit(self.txt_mess,(600,40))
-        self.txt_score_1 = FONT_NEONLED_BIG.render(self.score_1, True, LIGHT_BLUE)
-        WIN.blit(self.txt_score_1,(500, 300))
-        self.txt_name_1 = FONT_NEONLED_BIG.render(self.name_1, True, LIGHT_BLUE)
-        WIN.blit(self.txt_name_1,(700, 300))
-        self.txt_score_2 = FONT_NEONLED_BIG.render(self.score_2, True, LIGHT_BLUE)
-        WIN.blit(self.txt_score_2,(500, 400))
-        self.txt_name_2 = FONT_NEONLED_BIG.render(self.name_2, True, LIGHT_BLUE)
-        WIN.blit(self.txt_name_2,(700, 400))
-        self.txt_score_3 = FONT_NEONLED_BIG.render(self.score_3, True, LIGHT_BLUE)
+        WIN.blit(self.txt_mess,(580,40))
+        self.txt_score_1 = FONT_NEONLED_BIG.render(self.score_1, True, GOLD)
+        WIN.blit(self.txt_score_1,(500, 250))
+        self.txt_name_1 = FONT_NEONLED_BIG.render(self.name_1, True, GOLD)
+        WIN.blit(self.txt_name_1,(800, 250))
+        self.txt_score_2 = FONT_NEONLED_BIG.render(self.score_2, True, SILVER)
+        WIN.blit(self.txt_score_2,(500, 375))
+        self.txt_name_2 = FONT_NEONLED_BIG.render(self.name_2, True, SILVER)
+        WIN.blit(self.txt_name_2,(800, 375))
+        self.txt_score_3 = FONT_NEONLED_BIG.render(self.score_3, True, BRONZE)
         WIN.blit(self.txt_score_3,(500, 500))
-        self.txt_name_3 = FONT_NEONLED_BIG.render(self.name_3, True, LIGHT_BLUE)
-        WIN.blit(self.txt_name_3,(700, 500))
+        self.txt_name_3 = FONT_NEONLED_BIG.render(self.name_3, True, BRONZE)
+        WIN.blit(self.txt_name_3,(800, 500))
         pygame.display.update()
 
 
