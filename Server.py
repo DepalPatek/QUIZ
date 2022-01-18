@@ -56,7 +56,8 @@ def threaded_client(connection):
             print("Top 3 scores!")
             print("Pos\tPoints\tName")
             for line in range(3):
-                print(str(line+1)+"\t "+str(sortedData[line].replace(',','')))
+                classifica = str(sortedData[line].replace(',',''))
+                connection.send(classifica.encode('utf-8'))
 
 
 
