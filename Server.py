@@ -50,7 +50,7 @@ def threaded_client(connection):
                         connection.send(str.encode("Giusto"))
                     else:
                         print('no')
-                        connection.send(str.encode("Falso"))  
+                        connection.send(str.encode("Sbagliato"))
         
         elif whatToDo.decode('utf-8') == "3" :
             file = open(os.path.join('Files',"score.txt"),"r")
