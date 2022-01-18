@@ -50,11 +50,9 @@ def threaded_client(connection):
                         connection.send(str.encode("Falso"))  
         
         elif whatToDo.decode('utf-8') == "3" :
-            file = open("score.txt","r")
+            file = open(os.path.join('Files',"score.txt"),"r")
             readthefile = file.readlines()
             sortedData = sorted(readthefile,reverse=True)
-            print("Top 3 scores!")
-            print("Pos\tPoints\tName")
             for line in range(3):
                 classifica = str(sortedData[line].replace(',',''))
                 connection.send(classifica.encode('utf-8'))

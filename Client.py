@@ -195,6 +195,14 @@ class Game:
 
     def classifica(self):           #funzione che mostra la classifica
         self.run = True
+        self.top = []
+        for i in range(3):
+            self.top.append(self.ClientSocket.recv(2048).decode('utf-8'))
+        for i in range(3):
+            print(self.top[i])
+        self.txt_top=[]
+        self.messaggio = "TOP 3"
+        self.txt_mess = FONT_NEONLED.render(self.messaggio,True, LIGHT_BLUE)
         while self.run:
             self.clock.tick(FPS)
             for event in pygame.event.get():        
@@ -211,6 +219,11 @@ class Game:
     def drawClassifica(self):
         WIN.fill(ULTRAMARINE)
         self.puls_ind.drawPuls()
+        self.txt_top.clear()
+        WIN.blit(self.txt_mess,(300,100))
+        for i in range(3):
+            self.txt_top.append(FONT_NEONLED.render(self.top[i],True, LIGHT_BLUE))
+            WIN.blit(self.txt_top[i],(300,200+(i*100)))
         pygame.display.update()
 
 
@@ -242,7 +255,7 @@ class Game:
     def drawPartitaVeloce(self):
         WIN.fill(LIGHT_PINK)
         for i in range(len(self.domanda)):
-            self.txt_domanda = FONT_NEONLED.render(self.domanda[i], True, LIGHT_BLUE)
+            self.txt_domanda = FONT_NEONLED.render(self.domanda[i], True, LIGHT_BLUE)       
             WIN.blit(self.txt_domanda,(300, 200-(50*(len(self.domanda)-i+1))))
         for i in range(len(self.risp_a)):
             self.txt_risp_a = FONT_NEONLED_PULSANTI.render(self.risp_a[i], True, LIGHT_BLUE)
