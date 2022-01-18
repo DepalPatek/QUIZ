@@ -27,6 +27,8 @@ FONT_NEONLED = pygame.font.Font(os.path.join('Fonts','NEONLEDLight.otf'), 65) #f
 FONT_NEONLED_SMALL = pygame.font.Font(os.path.join('Fonts','NEONLEDLight.otf'), 55) #font e grandezza dei testi
 FONT_NEONLED_LITTLE = pygame.font.Font(os.path.join('Fonts','NEONLEDLight.otf'), 30) #font e grandezza dei testi
 FONT_NEONLED_PULSANTI = pygame.font.Font(os.path.join('Fonts','NEONLEDLight.otf'), 40) #font e grandezza dei testi
+FONT_NEONLED_BIG = pygame.font.Font(os.path.join('Fonts','NEONLEDLight.otf'), 90) #font e grandezza dei testi
+FONT_NEONLED_HUGE = pygame.font.Font(os.path.join('Fonts','NEONLEDLight.otf'), 120) #font e grandezza dei testi
 
 class Game:
     def setup(self):
@@ -100,7 +102,10 @@ class Game:
         self.txt_input_box = FONT_NEONLED.render(self.input_box, True, LIGHT_BLUE)        #testo all'interno dell'input box
         self.warning = "Il nickname deve contenere almeno 3 caratteri"  
         self.txt_warning = FONT_NEONLED_LITTLE.render(self.warning, True, LIGHT_BLUE)        #testo warning
+        self.warning2 = "Il nickname deve contenere massimo 6 caratteri"
+        self.txt_warning2 = FONT_NEONLED_LITTLE.render(self.warning2, True, LIGHT_BLUE)        #testo warning
         self.flag_warning = False                           #True = l'utente ha provato ad inserire un nick con meno di 3 caratteri
+        self.flag_warning2= False                           #True = l'utente ha provato ad inserire un nick con piú di 6 caratteri
         while self.run:
             self.clock.tick(FPS)
             for event in pygame.event.get():        
@@ -116,12 +121,16 @@ class Game:
                 if event.type == pygame.KEYDOWN:                    #controllo se l'utente sta digitando
                     if event.key == pygame.K_BACKSPACE:             #controllo se vuole cancellare un carattere
                         self.input_box = self.input_box[:-1]
-                    if event.key != pygame.K_RETURN and event.key != pygame.K_BACKSPACE and event.key != pygame.K_SPACE: #controllo se vuole scrivere
+                    if event.key != pygame.K_RETURN and event.key != pygame.K_BACKSPACE and event.key != pygame.K_SPACE and len(self.input_box)<6: #controllo se vuole scrivere
                         self.input_box += event.unicode
+                    elif event.key != pygame.K_RETURN and event.key != pygame.K_BACKSPACE and event.key != pygame.K_SPACE and len(self.input_box)==6:   #controllo se vuole scrivere ma ha gia scritto 6 caratteri
+                        self.flag_warning = False
+                        self.flag_warning2 = True
                     if event.key == pygame.K_RETURN:             #controllo se vuole premere invio
                         if len(self.input_box)>2:               #controllo se ha scritto almeno 3 caratteri
                             self.run = False
                         else:
+                            self.flag_warning2 = False
                             self.flag_warning = True
                     self.txt_input_box = FONT_NEONLED_SMALL.render(self.input_box, True, LIGHT_BLUE)
             
@@ -140,6 +149,8 @@ class Game:
         pygame.draw.rect(WIN, LIGHT_BLUE, self.rect_input_box, 5)                #input box
         if self.flag_warning == True:       #se ha scritto meno di tre caratteri mostro il messaggio
             WIN.blit(self.txt_warning, (self.rect_input_box.x-175, self.rect_input_box.y-50))
+        if self.flag_warning2 == True:
+            WIN.blit(self.txt_warning2,(self.rect_input_box.x-175, self.rect_input_box.y-50))
         pygame.display.update()
 
 
@@ -197,26 +208,27 @@ class Game:
 
     def classifica(self):           #funzione che mostra la classifica
         self.run = True
-        self.top_1=self.ClientSocket.recv(2048).decode('utf-8')
-        print(self.top_1, flush=True)
-        self.top_1=str(self.top_1)
-        self.top_1=self.top_1.split(',')
-        self.score_1=self.top_1[0]
-        self.name_1=self.top_1[1]
-        self.top_2=self.ClientSocket.recv(2048).decode('utf-8')
+        self.top_1=self.ClientSocket.recv(2048).decode('utf-8')             #acquisisco il primo classificato dal server
+        print(self.top_1, flush=True)   
+        self.top_1=str(self.top_1)                                          #converto il messaggio in stringa
+        self.top_1=self.top_1.split(',')                                    #divido la stringa in score/nome
+        self.score_1=self.top_1[0]                                          #acquisisco lo score separatamente
+        self.name_1=self.top_1[1]                                           #acquisisco il nome separatamente
+        self.top_2=self.ClientSocket.recv(2048).decode('utf-8')             #acquisisco il secondo classificato dal server
         print(self.top_2, flush=True)
         self.top_2=str(self.top_2)
         self.top_2=self.top_2.split(',')
         self.score_2=self.top_2[0]
         self.name_2=self.top_2[1]
-        self.top_3=self.ClientSocket.recv(2048).decode('utf-8')
+        self.top_3=self.ClientSocket.recv(2048).decode('utf-8')             #acquisisco il terzo classificato dal server
         print(self.top_3, flush=True)
         self.top_3=str(self.top_3)
         self.top_3=self.top_3.split(',')
         self.score_3=self.top_3[0]
         self.name_3=self.top_3[1]
         self.messaggio = "TOP 3"
-        self.txt_mess = FONT_NEONLED.render(self.messaggio,True, LIGHT_BLUE)
+        self.txt_mess = FONT_NEONLED_HUGE.render(self.messaggio,True, LIGHT_PINK)
+        self.leaderboard_img = pygame.image.load(os.path.join('Assets','leaderboard.png'))
         while self.run:
             self.clock.tick(FPS)
             for event in pygame.event.get():        
@@ -231,21 +243,21 @@ class Game:
 
 
     def drawClassifica(self):
-        WIN.fill(ULTRAMARINE)
+        WIN.blit(self.leaderboard_img,(0,0))
         self.puls_ind.drawPuls()
-        WIN.blit(self.txt_mess,(300,100))
-        self.txt_score_1 = FONT_NEONLED_PULSANTI.render(self.score_1, True, LIGHT_BLUE)
-        WIN.blit(self.txt_score_1,(300, 300))
-        self.txt_name_1 = FONT_NEONLED_PULSANTI.render(self.name_1, True, LIGHT_BLUE)
-        WIN.blit(self.txt_name_1,(400, 300))
-        self.txt_score_2 = FONT_NEONLED_PULSANTI.render(self.score_2, True, LIGHT_BLUE)
-        WIN.blit(self.txt_score_2,(300, 400))
-        self.txt_name_2 = FONT_NEONLED_PULSANTI.render(self.name_2, True, LIGHT_BLUE)
-        WIN.blit(self.txt_name_2,(400, 400))
-        self.txt_score_3 = FONT_NEONLED_PULSANTI.render(self.score_3, True, LIGHT_BLUE)
-        WIN.blit(self.txt_score_3,(300, 500))
-        self.txt_name_3 = FONT_NEONLED_PULSANTI.render(self.name_3, True, LIGHT_BLUE)
-        WIN.blit(self.txt_name_3,(400, 500))
+        WIN.blit(self.txt_mess,(600,40))
+        self.txt_score_1 = FONT_NEONLED_BIG.render(self.score_1, True, LIGHT_BLUE)
+        WIN.blit(self.txt_score_1,(500, 300))
+        self.txt_name_1 = FONT_NEONLED_BIG.render(self.name_1, True, LIGHT_BLUE)
+        WIN.blit(self.txt_name_1,(700, 300))
+        self.txt_score_2 = FONT_NEONLED_BIG.render(self.score_2, True, LIGHT_BLUE)
+        WIN.blit(self.txt_score_2,(500, 400))
+        self.txt_name_2 = FONT_NEONLED_BIG.render(self.name_2, True, LIGHT_BLUE)
+        WIN.blit(self.txt_name_2,(700, 400))
+        self.txt_score_3 = FONT_NEONLED_BIG.render(self.score_3, True, LIGHT_BLUE)
+        WIN.blit(self.txt_score_3,(500, 500))
+        self.txt_name_3 = FONT_NEONLED_BIG.render(self.name_3, True, LIGHT_BLUE)
+        WIN.blit(self.txt_name_3,(700, 500))
         pygame.display.update()
 
 
@@ -325,7 +337,7 @@ class Game:
 
 class PulsanteIndietro:                 #classe che gestisce il pulsante torna indietro
     def __init__(self):
-        self.rect = pygame.Rect(100,20,100,100)
+        self.rect = pygame.Rect(220,40,100,100)
         self.puls_acceso = pygame.image.load(os.path.join('Assets','PulsanteIndietroAcceso.png'))
         self.puls_spento = pygame.image.load(os.path.join('Assets','PulsanteIndietroSpento.png'))
 
