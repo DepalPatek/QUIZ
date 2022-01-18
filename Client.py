@@ -274,6 +274,7 @@ class Game:
 
     def partitaVeloce(self):           #funzione che fa partire la partita veloce
         self.run = True
+        print("PORCODIO")
         self.getDalServer()     #prendo le domande dal server
         self.template_quiz_img = pygame.image.load(os.path.join('Assets','template_quiz.png'))
         self.puls_a = Pulsanti(150,400,self.risp_a[0],442-(len(self.risp_a[0])*12),400+18)  #creo il primo pulsante
