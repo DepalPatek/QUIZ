@@ -184,6 +184,8 @@ class Game:
                     self.classifica()
                 if self.puls_gioca_vel.premuto(event) == True:      #controllo se l'utente vuole fare una partita veloce
                     self.run = False
+                    self.round=0
+                    self.score=0
                     self.risp="1"
                     self.ClientSocket.send(str.encode(self.risp))
                     self.partitaVeloce()
@@ -276,8 +278,12 @@ class Game:
         self.puls_b = Pulsanti(150,550,self.risp_b[0],442-(len(self.risp_b[0])*12),550+18)  #creo il primo pulsante
         self.puls_c = Pulsanti(750,400,self.risp_c[0],1042-(len(self.risp_c[0])*12),400+18)  #creo il primo pulsante
         self.puls_d = Pulsanti(750,550,self.risp_d[0],1042-(len(self.risp_d[0])*12),550+18)  #creo il primo pulsante
-        self.txt_giusto = FONT_NEONLED.render("bravo hai indovinato",True,LIGHT_BLUE)
-        self.txt_sbagliato = FONT_NEONLED.render("no hai sbagliato",True,LIGHT_BLUE)
+        if self.score == 0:
+            self.txt_score_str = FONT_NEONLED.render("000", True, LIGHT_BLUE)
+        else:
+            self.score_str = str(self.score)
+            self.score_str = "0" + self.score_str
+            self.txt_score_str = FONT_NEONLED.render(self.score_str, True, LIGHT_BLUE)
         self.risposta = ""
         self.risposto = False           #True = l'utente ha risposto
         self.corretto = False           #True = la risposta é corretta
@@ -308,6 +314,12 @@ class Game:
             self.puls_c.mouseSopra()
             self.puls_d.mouseSopra()
             self.drawPartitaVeloce()
+            if self.risposto == True:
+                self.round+=1
+                if self.round < 10:
+                    self.partitaVeloce()
+                else:
+                    self.menuPrincipale()
 
 
     def drawPartitaVeloce(self):
@@ -319,10 +331,7 @@ class Game:
         self.puls_b.drawButton()
         self.puls_c.drawButton()
         self.puls_d.drawButton()
-        if self.risposto == True and self.corretto == True:
-            WIN.blit(self.txt_giusto,(700,HEIGHT-100))
-        if self.risposto == True and self.corretto == False:
-            WIN.blit(self.txt_sbagliato,(700,HEIGHT-50))
+        WIN.blit(self.txt_score_str,(WIDTH-200,40))
         pygame.display.update()
 
     def getDalServer(self):         #funzione che prende la domanda e le risposte dal server
@@ -339,6 +348,8 @@ class Game:
 
     def controllaRisp(self):
         self.ClientSocket.send(str.encode(self.risposta))
+        if self.ClientSocket.recv(2048).decode('utf-8') == "Giusto":
+            self.score+=10
 
 
 

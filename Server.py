@@ -47,10 +47,10 @@ def threaded_client(connection):
                     b = c
                     controlloRisp = connection.recv(2048)
                     if controlloRisp.decode('utf-8') == veraRisp:
-                        print('si')
+                        time.sleep(0.01)
                         connection.send(str.encode("Giusto"))
                     elif controlloRisp.decode('utf-8') != veraRisp:
-                        print('no')
+                        time.sleep(0.01)
                         connection.send(str.encode("Falso"))  
         
         elif whatToDo.decode('utf-8') == "3" :
