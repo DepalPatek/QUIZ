@@ -196,8 +196,11 @@ class Game:
     def classifica(self):           #funzione che mostra la classifica
         self.run = True
         self.top = []
+        self.top.clear()
         for i in range(3):
             self.top.append(self.ClientSocket.recv(2048).decode('utf-8'))
+            print(self.top[i])
+            #self.app = self.top[i].split(",")
         for i in range(3):
             print(self.top[i])
         self.txt_top=[]
