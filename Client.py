@@ -6,6 +6,7 @@ import socket
 import cv2
 import textwrap
 import sys
+import time
 pygame.font.init()
 pygame.mixer.init()
 
@@ -349,6 +350,7 @@ class Game:
 
     def controllaRisp(self):
         self.ClientSocket.send(str.encode(self.risposta))
+        time.sleep(0.001)
         if self.ClientSocket.recv(2048).decode('utf-8') == "Giusto":
             self.score+=10
 
