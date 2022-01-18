@@ -54,7 +54,7 @@ def threaded_client(connection):
             readthefile = file.readlines()
             sortedData = sorted(readthefile,reverse=True)
             for line in range(3):
-                classifica = str(sortedData[line].replace(',',''))
+                classifica = str(sortedData[line])
                 connection.send(classifica.encode('utf-8'))
 
 
