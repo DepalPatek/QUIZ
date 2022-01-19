@@ -23,7 +23,7 @@ def threaded_client(connection):
     file = open(os.path.join('Files',"score.txt"),"r")
     checklist = file.readlines()
     while any(str(threaded_client.name.decode('utf-8').upper()) in s for s in checklist) :
-        te prego = 1
+        teprego = "1"
         connection.send(teprego.encode('utf-8'))
         threaded_client.name = connection.recv(2048)
     file.close()
