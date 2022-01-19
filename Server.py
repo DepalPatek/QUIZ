@@ -54,20 +54,13 @@ def threaded_client(connection):
                         connection.send(str.encode("Falso"))  
             score = connection.recv(2048)
             score = score.decode('utf-8')       
-            score = int(score)
-            if score < 100 :
-                score = str(score)
-                score = score.zfill(3)
-            else:
-                pass
             name= str(threaded_client.name.decode('utf-8'))
             file=open(os.path.join('Files','score.txt'),"a")
-            file.write(str(score)+","+name+"\n")
+            if name == 
+            file.write(str(score)+","+name.upper()+"\n")
             file.close() 
                         
         elif whatToDo.decode('utf-8') == "2" :
-            while whatToDo2 != 0 :
-                whatToDo2 = connection.recv(2048)
                 if whatToDo2.decode('utf-8') == "1" :
                     with open(os.path.join('Files','Scienza.txt')) as k:
                         listaGeneri = list(k)
