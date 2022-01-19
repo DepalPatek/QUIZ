@@ -52,17 +52,18 @@ def threaded_client(connection):
                     elif controlloRisp.decode('utf-8') != veraRisp:
                         time.sleep(0.01)
                         connection.send(str.encode("Falso"))  
-                        score = connection.recv(2048)       
-                        score = int(score)
-                        if score < 100 :
-                            score = str(score)
-                            score = score.zfill(3)
-                        else:
-                            pass
-                        name= str(threaded_client.name.decode('utf-8'))
-                        file=open("Files","score.txt","a")
-                        file.write(str(score)+","+name+"\n")
-                        file.close() 
+            score = connection.recv(2048)
+            score = score.decode('utf-8')       
+            score = int(score)
+            if score < 100 :
+                score = str(score)
+                score = score.zfill(3)
+            else:
+                pass
+            name= str(threaded_client.name.decode('utf-8'))
+            file=open("Files","score.txt","a")
+            file.write(str(score)+","+name+"\n")
+            file.close() 
                         
         elif whatToDo.decode('utf-8') == "2" :
             while whatToDo2 != 0 :
