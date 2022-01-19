@@ -146,7 +146,7 @@ class Game:
         time.sleep(0.01)
         if self.ClientSocket.recv(2048).decode('utf-8') == "1":
             self.flag_same = True
-            self.getNickname
+            self.getNickname()
         else:
             self.menuPrincipale()
 
