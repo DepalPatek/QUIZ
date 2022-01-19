@@ -34,7 +34,7 @@ def threaded_client(connection):
                         mylist = list(f)
                     with open(os.path.join('Files','Informatica.txt')) as f:
                         mylist = mylist.append(f)
-                    with open(os.path.join('Files','Geografia.txt')) as f:
+                    with open(os.path.join('Files','Scienza.txt')) as f:
                         mylist = mylist.append(f) 
                     with open(os.path.join('Files','Storia.txt')) as f:
                         mylist = mylist.append(f)
