@@ -8,7 +8,6 @@ ServerSocket = socket.socket()
 host = 'localhost'
 port = 6716
 ThreadCount = 0
-flag = 0
 try:
     ServerSocket.bind((host, port))
 except socket.error as e:
@@ -20,7 +19,13 @@ ServerSocket.listen(5)
 
 def threaded_client(connection):
     threaded_client.name = connection.recv(2048)
-    print("\nClient name: " + str(threaded_client.name.decode('utf-8')))
+    file = open(os.path.join('Files',"score.txt"),"r")
+    checklist = file.readlines()
+    while threaded_client.name in checklist :
+        threaded_client.name = connection.recv(2048)
+        threaded_client.name = str(threaded_client.name.decode('utf-8')) 
+    file.close()
+    print("\nClient name: " + threaded_client.name)
     while True:
         whatToDo = 0
         whatToDo = connection.recv(2048)
@@ -55,8 +60,9 @@ def threaded_client(connection):
             score = connection.recv(2048)
             score = score.decode('utf-8')       
             name= str(threaded_client.name.decode('utf-8'))
-            file=open(os.path.join('Files','score.txt'),"a")
-            file.write(str(score)+","+name.upper()+"\n")
+            name = name.upper()
+            file = open(os.path.join('Files',"score.txt"),"a")
+            file.write(str(score)+","+name+"\n")
             file.close() 
                         
         elif whatToDo.decode('utf-8') == "2" :
