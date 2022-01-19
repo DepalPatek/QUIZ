@@ -19,8 +19,8 @@ ServerSocket.listen(5)
 
 def threaded_client(connection):
     threaded_client.name = ""
-    with open(os.path.join('Files',"score.txt"),"r+") as file :
-        checkList = readthefile.readlines()
+    file = open(os.path.join('Files',"score.txt"),"r+")
+    checkList = file.readlines()
     while threaded_client in checkList :
         threaded_client.name = connection.recv(2048)
         threaded_client.name = str(threaded_client.name.decode('utf-8'))
