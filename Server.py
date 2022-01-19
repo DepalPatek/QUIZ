@@ -72,10 +72,8 @@ def threaded_client(connection):
                 i = 0
                 while i < 10 :
                         i = i + 1
-                        with open(os.path.join('Files','Scienza.txt')) as f:
-                            mylist = list(f)
                         c = random.choice(domandList)
-                        domandainvio = mylist[c]
+                        domandainvio = listaGeneri[c]
                         domandList.remove(c)
                         time.sleep(0.01)
                         connection.send(domandainvio.encode('utf-8'))
@@ -85,7 +83,7 @@ def threaded_client(connection):
                                 inviorisposta = mylist[b]
                                 time.sleep(0.01)
                                 connection.send(inviorisposta.encode('utf-8'))
-                        veraRisp = mylist[c+5]
+                        veraRisp = listaGeneri[c+5]
                         veraRisp = veraRisp.rstrip("\n")
                         b = c
                         controlloRisp = connection.recv(2048)
