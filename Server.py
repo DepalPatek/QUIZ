@@ -18,15 +18,14 @@ ServerSocket.listen(5)
 
 
 def threaded_client(connection):
-    threaded_client.name = ""
-    file = open(os.path.join('Files',"score.txt"),"r+")
-    checkList = file.readlines()
-    while threaded_client.name in checkList :
+    threaded_client.name = connection.recv(2048)
+    file = open(os.path.join('Files',"score.txt"),"r")
+    checklist = file.readlines()
+    while threaded_client.name in checklist :
         threaded_client.name = connection.recv(2048)
-        threaded_client.name = str(threaded_client.name)
-        print(threaded_client.name)
+        threaded_client.name = str(threaded_client.name.decode('utf-8')) 
     file.close()
-    print("\nClient name: " + str(threaded_client.name.decode('utf-8')))
+    print("\nClient name: " + threaded_client.name)
     while True:
         whatToDo = 0
         whatToDo = connection.recv(2048)
