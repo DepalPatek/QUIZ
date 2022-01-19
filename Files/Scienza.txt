@@ -1,10 +1,10 @@
-Questo gas essenziale è importante per poter respirare.
+Qual e' il gas essenziale per poter respirare?
 Elio
 Ossigeno
 Idrogeno
 Uranio
 Ossigeno
-Qual è il pianeta più vicino al sole?
+Qual e' il pianeta piu' vicino al sole?
 Mercurio
 Terra
 Marte
@@ -16,7 +16,7 @@ Quanti denti ha un essere umano adulto?
 32
 41
 32
-Qual è il pianeta più grande del sistema solare?
+Qual e' il pianeta piu' grande del sistema solare?
 Nettuno
 Terra
 Plutone
@@ -28,13 +28,13 @@ Polline
 Fiori
 Zucchero
 Nettare
-Qual è il gruppo sanguigno più raro?
+Qual e' il gruppo sanguigno piu' raro?
 AB positivo
 AB negativo
 0 negativo
 A positivo
 AB negativo
-Qual è il più grande animale terrestre conosciuto?
+Qual e' il piu' grande animale terrestre conosciuto?
 Giraffa
 Balenottera azzurra
 Elefante

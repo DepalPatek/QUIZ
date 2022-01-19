@@ -328,7 +328,7 @@ class Game:
         WIN.blit(self.template_quiz_img,(0,0))
         for i in range(len(self.domanda)):
             self.txt_domanda = FONT_NEONLED_SMALL.render(self.domanda[i], True, LIGHT_BLUE)       
-            WIN.blit(self.txt_domanda,(475, 275-(45*(len(self.domanda)-i+1))))
+            WIN.blit(self.txt_domanda,(450, 275-(45*(len(self.domanda)-i+1))))
         self.puls_a.drawButton()
         self.puls_b.drawButton()
         self.puls_c.drawButton()
