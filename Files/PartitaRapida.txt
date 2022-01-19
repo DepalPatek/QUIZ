@@ -58,7 +58,7 @@ California
 Texas
 Arizona
 Texas
-Quale tra questi e' il gas piú leggero?
+Quale tra questi e' il gas piu' leggero?
 Uranio
 Ossigeno
 Idrogeno
@@ -178,7 +178,7 @@ Quante capitali ha avuto l'Italia dopo l'unificazione?
 3
 1
 5
-Quale tra questi linguaggi non é Object Oriented?
+Quale tra questi linguaggi non e' Object Oriented?
 C++
 Java
 Ruby
