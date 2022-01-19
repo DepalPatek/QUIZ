@@ -12,7 +12,7 @@ pygame.mixer.init()
 
 WIDTH, HEIGHT = 1440,720     #altezza e larghezza della finestra
 WIN = pygame.display.set_mode((WIDTH, HEIGHT)) #Creo la finestra
-pygame.display.set_caption("QUIZ")      #nome della finestra
+pygame.display.set_caption("QUIZ TIME")      #nome della finestra
 logo=pygame.image.load(os.path.join('Assets', 'Titolo_icona.png'))
 pygame.display.set_icon(logo)       #imposto l'icona del gioco
 
