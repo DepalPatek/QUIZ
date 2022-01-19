@@ -26,6 +26,8 @@ def threaded_client(connection):
         teprego = "1"
         connection.send(teprego.encode('utf-8'))
         threaded_client.name = connection.recv(2048)
+    teprego = "0"
+    connection.send(teprego.encode('utf-8'))
     file.close()
 
     print("\nClient name: " + str(threaded_client.name.decode('utf-8').upper()))
