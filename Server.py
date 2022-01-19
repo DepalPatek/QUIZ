@@ -65,6 +65,7 @@ def threaded_client(connection):
                     file.truncate(0)
                     file.close()
                 else :
+                    file = open(os.path.join('Files',"score.txt"),"a")
                     file.write(str(score)+","+name.upper()+"\n")
                     file.close() 
                         
