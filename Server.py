@@ -55,9 +55,17 @@ def threaded_client(connection):
             score = connection.recv(2048)
             score = score.decode('utf-8')       
             name= str(threaded_client.name.decode('utf-8'))
-            file=open(os.path.join('Files','score.txt'),"a")
-            file.write(str(score)+","+name.upper()+"\n")
-            file.close() 
+            file = open(os.path.join('Files',"score.txt"),"r+")
+            readthefile = file.readlines()
+            for line in readthefile:
+                if name in line:
+                    Replacement = line.replace(name, name)
+                    readthefile = Replacement
+                    file.writelines(readthefile)
+                    file.close()
+                else
+                    file.write(str(score)+","+name.upper()+"\n")
+                    file.close() 
                         
         elif whatToDo.decode('utf-8') == "2" :
             time.sleep(0.01)
