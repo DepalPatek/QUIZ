@@ -1,9 +1,9 @@
-Qual e' il gas essenziale per poter respirare?
-Elio
-Ossigeno
-Idrogeno
+Quale tra questi e' il gas piú leggero?
 Uranio
 Ossigeno
+Idrogeno
+Elio
+Elio
 Qual e' il pianeta piu' vicino al sole?
 Mercurio
 Terra
@@ -22,7 +22,7 @@ Terra
 Plutone
 Giove
 Giove
-Cosa raccolgono e usano le api per creare il miele?
+Cosa usano le api per creare il miele?
 Nettare
 Polline
 Fiori
