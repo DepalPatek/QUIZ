@@ -1,4 +1,4 @@
-Quale tra questi linguaggi non é Object Oriented?
+Quale tra questi linguaggi non e' Object Oriented?
 C++
 Java
 Ruby
