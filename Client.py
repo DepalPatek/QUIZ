@@ -358,24 +358,33 @@ class Game:
 
     def schermataScore(self):
         self.run = True
-        self.score_str = str(self.score)
-        self.score_str = "0" + self.score_str
-        self.testo_score = "hai realizzato "+self.score_str+" punti"
+        if self.score == 0:
+            self.score_str = "000"
+        elif self.score == 100:
+            self.score_str = "100"
+        else:
+            self.score_str = str(self.score)
+            self.score_str = "0" + self.score_str
+        self.testo_score = "hai realizzato "+self.score_str+" punti !!!"
         self.txt_testo_score = FONT_NEONLED.render(self.testo_score,True,LIGHT_BLUE)
         self.ClientSocket.send(str.encode(self.score_str))
+        self.continua = Pulsanti(500,400,"Continua",500+190,400+18)
         while self.run:
             self.clock.tick(FPS)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:           #controlllo se il giocatore chiude la finestra
                     self.ClientSocket.close()           #chiudo il socket
                     pygame.quit()
-            
+                if self.continua.premuto(event) == True:
+                    self.menuPrincipale()
+            self.continua.mouseSopra()
             self.drawScore()
 
     
     def drawScore(self):
         WIN.blit(self.background,(0,0))
-        WIN.blit(self.txt_testo_score,(300,100))
+        WIN.blit(self.txt_testo_score,(370,200))
+        self.continua.drawButton()
         pygame.display.update()
 
 
