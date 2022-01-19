@@ -52,6 +52,18 @@ def threaded_client(connection):
                     elif controlloRisp.decode('utf-8') != veraRisp:
                         time.sleep(0.01)
                         connection.send(str.encode("Falso"))  
+                        score = connection.recv(2048)       
+                        score = int(score)
+                        if score < 100 :
+                            score = str(score)
+                            score = score.zfill(3)
+                        else:
+                            pass
+                        name= str(threaded_client.name.decode('utf-8'))
+                        file=open("Files","score.txt","a")
+                        file.write(str(score)+","+name+"\n")
+                        file.close() 
+                        
         elif whatToDo.decode('utf-8') == "2" :
             while whatToDo2 != 0 :
                 whatToDo2 = connection.recv(2048)
@@ -91,7 +103,7 @@ def threaded_client(connection):
                             connection.send(str.encode("Giusto"))
                         elif controlloRisp.decode('utf-8') != veraRisp:
                             time.sleep(0.01)
-                            connection.send(str.encode("Falso"))                          
+                            connection.send(str.encode("Falso"))                
 
         elif whatToDo.decode('utf-8') == "3" :
             file = open(os.path.join('Files',"score.txt"),"r")
