@@ -58,11 +58,10 @@ def threaded_client(connection):
             file = open(os.path.join('Files',"score.txt"),"r+")
             readthefile = file.readlines()
             for line in readthefile:
-                if name in line:
+                if readthefile.find(name) != -1:
                     Replacement = line.replace(name.upper(), name.upper())
                     readthefile = Replacement
                     file.writelines(readthefile)
-                    file.truncate(0)
                     file.close()
                 else :
                     file = open(os.path.join('Files',"score.txt"),"a")
