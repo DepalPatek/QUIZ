@@ -29,16 +29,9 @@ def threaded_client(connection):
             i = 0
             while i < 10 :
                     i = i +1
-                    with open(os.path.join('Files','Geografia.txt')) as f:
+                    with open(os.path.join('Files','PartitaRapida.txt')) as f:
                         mylist = list(f)
-                    with open(os.path.join('Files','Informatica.txt')) as f:
-                        mylist.append(f)
-                    with open(os.path.join('Files','Scienza.txt')) as f:
-                        mylist.append(f) 
-                    with open(os.path.join('Files','Storia.txt')) as f:
-                        mylist.append(f)
                     c = random.choice(domandList)
-                    print(c)
                     domandainvio = mylist[c]
                     domandList.remove(c)
                     time.sleep(0.01)
