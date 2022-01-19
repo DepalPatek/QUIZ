@@ -1,0 +1,60 @@
+Quale tra questi linguaggi non é Object Oriented?
+C++
+Java
+Ruby
+C
+C
+Quale tra questi network copre un area piu' vasta?
+LAN
+WAN
+MAN
+PAN
+WAN
+Quale azienda costrui' il primo Personal Computer?
+Olivetti
+Microsoft
+Motorola
+Apple
+Olivetti
+Da quale azienda e' stato sviluppato l'Unreal Engine?
+Beteshda
+Ubisoft
+Epic Games
+Rockstar Games
+Epic Games
+Quale tra questi e' un componente funzionale della CPU?
+ALU 
+AGP
+RAM
+ROM
+ALU
+Chi invento' il primo microprocessore?
+Alan Touring
+Steve Jobs
+Bill Gates
+Federico Faggin
+Federico Faggin 
+Quale tra questi sistemi operativi e' piu' vecchio?
+Windows Nashville
+Windows 95
+Windows 7
+Windows XP
+Windows 95
+Quale tra queste aziende e' la piu' vecchia?
+Activision
+Amazon
+Blizzard
+Ubisoft
+Activision
+In quale anno e' stato rilasciato il Nokia 3310?
+2002
+2000
+1998
+2004
+2000
+In quanti strati é diviso il modello tcp/ip?
+7
+2
+5
+4
+4
