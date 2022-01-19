@@ -21,9 +21,10 @@ def threaded_client(connection):
     threaded_client.name = ""
     file = open(os.path.join('Files',"score.txt"),"r+")
     checkList = file.readlines()
-    while threaded_client in checkList :
+    while threaded_client.name in checkList :
         threaded_client.name = connection.recv(2048)
-        threaded_client.name = str(threaded_client.name.decode('utf-8'))
+        threaded_client.name = str(threaded_client.name)
+        print(threaded_client.name)
     file.close()
     print("\nClient name: " + str(threaded_client.name.decode('utf-8')))
     while True:
