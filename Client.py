@@ -168,6 +168,7 @@ class Game:
         self.puls_esci = Pulsanti(480,525,"ESCI",480+240,525+18)                            #pulsante esci
         self.puls_ind = PulsanteIndietro()                  #pulsante indietro (utilizzato successivamente)
         self.risp=0
+        self.ranked = False
 
         while self.run:
             self.clock.tick(FPS)               
@@ -187,6 +188,7 @@ class Game:
                     self.run = False
                     self.round=0
                     self.score=0
+                    self.ranked = True
                     self.risp="1"
                     self.ClientSocket.send(str.encode(self.risp))
                     self.partitaVeloce()
@@ -367,7 +369,8 @@ class Game:
             self.score_str = "0" + self.score_str
         self.testo_score = "hai realizzato "+self.score_str+" punti !!!"
         self.txt_testo_score = FONT_NEONLED.render(self.testo_score,True,LIGHT_BLUE)
-        self.ClientSocket.send(str.encode(self.score_str))
+        if self.ranked == True:
+            self.ClientSocket.send(str.encode(self.score_str))
         self.continua = Pulsanti(500,400,"Continua",500+190,400+18)
         while self.run:
             self.clock.tick(FPS)
@@ -400,13 +403,37 @@ class Game:
         self.puls_geografia = Pulsanti(475,300,"Geografia",475+170,300+18)
         self.puls_informatica = Pulsanti(475,400,"Informatica",475+160,400+18)
         self.puls_scienze = Pulsanti(475,500,"Scienze",475+200,500+18)
-        self.premuto = False
+        self.categoria = ""
         while self.run:
             self.clock.tick(FPS)
             for event in pygame.event.get():        
                 if event.type == pygame.QUIT:           #controlllo se il giocatore chiude la finestra
                     self.ClientSocket.close()           #chiudo il socket
                     pygame.quit()
+                if self.puls_scienze.premuto(event) == True:
+                    self.categoria = "1"
+                    self.ClientSocket.send(str.encode(self.categoria))
+                    time.sleep(0.01)
+                    self.ranked = False
+                    self.partitaVeloce()
+                if self.puls_informatica.premuto(event) == True:
+                    self.categoria = "2"
+                    self.ClientSocket.send(str.encode(self.categoria))
+                    time.sleep(0.01)
+                    self.ranked = False
+                    self.partitaVeloce()
+                if self.puls_geografia.premuto(event) == True:
+                    self.categoria = "3"
+                    self.ClientSocket.send(str.encode(self.categoria))
+                    time.sleep(0.01)
+                    self.ranked = False
+                    self.partitaVeloce()
+                if self.puls_storia.premuto(event) == True:
+                    self.categoria = "4"
+                    self.ClientSocket.send(str.encode(self.categoria))
+                    time.sleep(0.01)
+                    self.ranked = False
+                    self.partitaVeloce()
             self.puls_scienze.mouseSopra()
             self.puls_storia.mouseSopra()
             self.puls_geografia.mouseSopra()
