@@ -194,6 +194,11 @@ class Game:
                     self.partitaVeloce()
                 if self.puls_gioca_pers.premuto(event) == True:      #controllo se l'utente vuole fare una partita personalizzata
                     self.run = False
+                    self.risp="2"
+                    self.score = 0
+                    self.round=0
+                    self.ranked = False
+                    self.ClientSocket.send(str.encode(self.risp))
                     self.scegliCategoria()
             self.puls_gioca_pers.mouseSopra()           #controllo se il giocatore ha il mouse sopra il pulsante partita personalizzata
             self.puls_gioca_vel.mouseSopra()            #controllo se il giocatore ha il mouse sopra il pulsante partita veloce
@@ -338,14 +343,19 @@ class Game:
         pygame.display.update()
 
     def getDalServer(self):         #funzione che prende la domanda e le risposte dal server
+        time.sleep(0.01)
         self.domanda = self.ClientSocket.recv(2048).decode('utf-8')
         self.domanda = textwrap.wrap(self.domanda,width = 21)
+        time.sleep(0.01)
         self.risp_a = self.ClientSocket.recv(2048).decode('utf-8')#ricevo la prima risposta dal server
         self.risp_a = textwrap.wrap(self.risp_a,width = 40)
+        time.sleep(0.01)
         self.risp_b = self.ClientSocket.recv(2048).decode('utf-8')#ricevo la seconda risposta dal server
         self.risp_b = textwrap.wrap(self.risp_b,width = 40)
+        time.sleep(0.01)
         self.risp_c = self.ClientSocket.recv(2048).decode('utf-8')#ricevo la terza risposta dal server
         self.risp_c = textwrap.wrap(self.risp_c,width = 40)
+        time.sleep(0.01)
         self.risp_d = self.ClientSocket.recv(2048).decode('utf-8')#ricevo la quarta risposta dal server
         self.risp_d = textwrap.wrap(self.risp_d,width = 40)
 
@@ -414,25 +424,21 @@ class Game:
                     self.categoria = "1"
                     self.ClientSocket.send(str.encode(self.categoria))
                     time.sleep(0.01)
-                    self.ranked = False
                     self.partitaVeloce()
                 if self.puls_informatica.premuto(event) == True:
                     self.categoria = "2"
                     self.ClientSocket.send(str.encode(self.categoria))
                     time.sleep(0.01)
-                    self.ranked = False
                     self.partitaVeloce()
                 if self.puls_geografia.premuto(event) == True:
                     self.categoria = "3"
                     self.ClientSocket.send(str.encode(self.categoria))
                     time.sleep(0.01)
-                    self.ranked = False
                     self.partitaVeloce()
                 if self.puls_storia.premuto(event) == True:
                     self.categoria = "4"
                     self.ClientSocket.send(str.encode(self.categoria))
                     time.sleep(0.01)
-                    self.ranked = False
                     self.partitaVeloce()
             self.puls_scienze.mouseSopra()
             self.puls_storia.mouseSopra()
