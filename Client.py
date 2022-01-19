@@ -240,7 +240,6 @@ class Game:
             for event in pygame.event.get():        
                 if event.type == pygame.QUIT:           #controlllo se il giocatore chiude la finestra
                     self.ClientSocket.close()           #chiudo il socket
-                    print("chiudo")
                     pygame.quit()
                 if self.puls_ind.premuto(event) == True:
                     self.run = False
@@ -321,7 +320,7 @@ class Game:
                 if self.round < 10:
                     self.partitaVeloce()
                 else:
-                    self.menuPrincipale()
+                    self.schermataScore()
 
 
     def drawPartitaVeloce(self):
@@ -353,6 +352,30 @@ class Game:
         time.sleep(0.001)
         if self.ClientSocket.recv(2048).decode('utf-8') == "Giusto":
             self.score+=10
+
+
+
+
+    def schermataScore(self):
+        self.run = True
+        self.score_str = str(self.score)
+        self.score_str = "0" + self.score_str
+        self.testo_score = "hai realizzato "+self.score_str+" punti"
+        self.txt_testo_score = FONT_NEONLED.render(self.testo_score,True,LIGHT_BLUE)
+        while self.run:
+            self.clock.tick(FPS)
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:           #controlllo se il giocatore chiude la finestra
+                    self.ClientSocket.close()           #chiudo il socket
+                    pygame.quit()
+            
+            self.drawScore()
+
+    
+    def drawScore(self):
+        WIN.blit(self.background,(0,0))
+        WIN.blit(self.txt_testo_score,(300,100))
+        pygame.display.update()
 
 
 
