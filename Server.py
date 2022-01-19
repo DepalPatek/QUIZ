@@ -19,13 +19,16 @@ ServerSocket.listen(5)
 
 def threaded_client(connection):
     threaded_client.name = connection.recv(2048)
+    
     file = open(os.path.join('Files',"score.txt"),"r")
     checklist = file.readlines()
-    while threaded_client.name in checklist :
+    while any(str(threaded_client.name.decode('utf-8').upper()) in s for s in checklist) :
+        te prego = 1
+        connection.send(teprego.encode('utf-8'))
         threaded_client.name = connection.recv(2048)
-        threaded_client.name = str(threaded_client.name.decode('utf-8')) 
     file.close()
-    print("\nClient name: " + threaded_client.name)
+
+    print("\nClient name: " + str(threaded_client.name.decode('utf-8').upper()))
     while True:
         whatToDo = 0
         whatToDo = connection.recv(2048)
