@@ -78,7 +78,7 @@ class Game:
                 self.video.set(cv2.CAP_PROP_POS_FRAMES, 0)
                 self.count=0
             self.drawTitle()        #disegno la finestra iniziale
-
+        self.flag_same = False
         self.getNickname()
 
 
@@ -110,6 +110,7 @@ class Game:
         self.txt_warning2 = FONT_NEONLED_LITTLE.render(self.warning2, True, LIGHT_BLUE)        #testo warning
         self.flag_warning = False                           #True = l'utente ha provato ad inserire un nick con meno di 3 caratteri
         self.flag_warning2= False                           #True = l'utente ha provato ad inserire un nick con piú di 6 caratteri
+        self.txt_same = FONT_NEONLED_LITTLE.render("Nickname gia utilizzato",True,LIGHT_BLUE)
         while self.run:
             self.clock.tick(FPS)
             for event in pygame.event.get():        
@@ -130,17 +131,24 @@ class Game:
                     elif event.key != pygame.K_RETURN and event.key != pygame.K_BACKSPACE and event.key != pygame.K_SPACE and len(self.input_box)==6:   #controllo se vuole scrivere ma ha gia scritto 6 caratteri
                         self.flag_warning = False
                         self.flag_warning2 = True
+                        self.flag_same = False
                     if event.key == pygame.K_RETURN:             #controllo se vuole premere invio
                         if len(self.input_box)>2:               #controllo se ha scritto almeno 3 caratteri
                             self.run = False
                         else:
                             self.flag_warning2 = False
                             self.flag_warning = True
+                            self.flag_same = False
                     self.txt_input_box = FONT_NEONLED_SMALL.render(self.input_box, True, LIGHT_BLUE)
             
             self.drawGetNickname()
         self.ClientSocket.send(str.encode(self.input_box)) #invio il nickname al server
-        self.menuPrincipale()
+        time.sleep(0.01)
+        if self.ClientSocket.recv(2048).decode('utf-8') == "1":
+            self.flag_same = True
+            self.getNickname
+        else:
+            self.menuPrincipale()
 
 
 
@@ -155,6 +163,8 @@ class Game:
             WIN.blit(self.txt_warning, (self.rect_input_box.x-175, self.rect_input_box.y-50))
         if self.flag_warning2 == True:
             WIN.blit(self.txt_warning2,(self.rect_input_box.x-175, self.rect_input_box.y-50))
+        if self.flag_same == True:
+            WIN.blit(self.txt_same,(self.rect_input_box.x-175, self.rect_input_box.y-50))
         pygame.display.update()
 
 
