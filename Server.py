@@ -59,7 +59,7 @@ def threaded_client(connection):
             readthefile = file.readlines()
             for line in readthefile:
                 if name in line:
-                    Replacement = line.replace(name, name)
+                    Replacement = line.replace(name.upper(), name.upper())
                     readthefile = Replacement
                     file.writelines(readthefile)
                     file.truncate(0)
