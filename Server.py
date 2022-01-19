@@ -32,6 +32,15 @@ def threaded_client(connection):
                     i = i +1
                     with open(os.path.join('Files','domande.txt')) as f:
                         mylist = list(f)
+<<<<<<< Updated upstream
+=======
+                    with open(os.path.join('Files','Informatica.txt')) as f:
+                        mylist = mylist.append(f)
+                    with open(os.path.join('Files','Scienza.txt')) as f:
+                        mylist = mylist.append(f) 
+                    with open(os.path.join('Files','Storia.txt')) as f:
+                        mylist = mylist.append(f)
+>>>>>>> Stashed changes
                     c = random.choice(domandList)
                     domandainvio = mylist[c]
                     domandList.remove(c)
