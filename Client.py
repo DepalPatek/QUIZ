@@ -395,22 +395,32 @@ class Game:
 
     def scegliCategoria(self):           #funzione che fa partire la partita personalizzata facendo scegliere la categoria
         self.run = True
+        self.txt_scegli_categoria = FONT_NEONLED.render("Selezionare la Categoria",True,LIGHT_BLUE)
+        self.puls_storia = Pulsanti(475,200,"Storia",475+220,200+18)
+        self.puls_geografia = Pulsanti(475,300,"Geografia",475+170,300+18)
+        self.puls_informatica = Pulsanti(475,400,"Informatica",475+160,400+18)
+        self.puls_scienze = Pulsanti(475,500,"Scienze",475+200,500+18)
+        self.premuto = False
         while self.run:
             self.clock.tick(FPS)
             for event in pygame.event.get():        
                 if event.type == pygame.QUIT:           #controlllo se il giocatore chiude la finestra
                     self.ClientSocket.close()           #chiudo il socket
                     pygame.quit()
-                if self.puls_ind.premuto(event) == True:
-                    self.run = False
-                    self.menuPrincipale()
-            self.puls_ind.mouseSopra()
+            self.puls_scienze.mouseSopra()
+            self.puls_storia.mouseSopra()
+            self.puls_geografia.mouseSopra()
+            self.puls_informatica.mouseSopra()
             self.drawScegliCategoria()
 
 
     def drawScegliCategoria(self):
-        WIN.fill(LIGHT_BLUE)
-        self.puls_ind.drawPuls()
+        WIN.blit(self.background,(0,0))
+        WIN.blit(self.txt_scegli_categoria,(350,110))
+        self.puls_storia.drawButton()
+        self.puls_geografia.drawButton()
+        self.puls_informatica.drawButton()
+        self.puls_scienze.drawButton()
         pygame.display.update()
 
 
