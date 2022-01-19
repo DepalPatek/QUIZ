@@ -27,7 +27,7 @@ def threaded_client(connection):
         if whatToDo.decode('utf-8') == "1" :
             domandList = [0, 6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72, 78, 84, 90, 96, 102, 108, 114, 120, 126, 132, 138, 144, 150, 156, 162, 168, 174, 180, 186, 192, 198, 204, 210, 216, 222, 228, 234]
             i = 0
-            while i < 10 :
+            while i < 2 :
                     i = i +1
                     with open(os.path.join('Files','PartitaRapida.txt')) as f:
                         mylist = list(f)
