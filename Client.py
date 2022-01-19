@@ -162,9 +162,9 @@ class Game:
 
     def menuPrincipale(self):           #funzione che gestisce il menu principale
         self.run = True
-        self.puls_gioca_pers = Pulsanti(480,325,"PARTITA PERSONALIZZATA",480+24,325+18)     #pulsante partita personalizzata
-        self.puls_gioca_vel = Pulsanti(480,225,"PARTITA VELOCE",480+125,225+18)             #pulsante partita veloce
-        self.puls_class = Pulsanti(480,425,"CLASSIFICA",480+175,425+18)                     #pulsante classifica
+        self.puls_gioca_pers = Pulsanti(480,325,"PARTITA PER ARGOMENTO",480+35,325+18)     #pulsante partita personalizzata
+        self.puls_gioca_vel = Pulsanti(480,225,"PARTITA CLASSIFICATA",480+65,225+18)             #pulsante partita veloce
+        self.puls_class = Pulsanti(480,425,"CLASSIFICA",480+180,425+18)                     #pulsante classifica
         self.puls_esci = Pulsanti(480,525,"ESCI",480+240,525+18)                            #pulsante esci
         self.puls_ind = PulsanteIndietro()                  #pulsante indietro (utilizzato successivamente)
         self.risp=0
@@ -362,6 +362,7 @@ class Game:
         self.score_str = "0" + self.score_str
         self.testo_score = "hai realizzato "+self.score_str+" punti"
         self.txt_testo_score = FONT_NEONLED.render(self.testo_score,True,LIGHT_BLUE)
+        self.ClientSocket.send(str.encode(self.score_str))
         while self.run:
             self.clock.tick(FPS)
             for event in pygame.event.get():

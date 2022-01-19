@@ -61,7 +61,7 @@ def threaded_client(connection):
             else:
                 pass
             name= str(threaded_client.name.decode('utf-8'))
-            file=open("Files","score.txt","a")
+            file=open(os.path.join('Files','score.txt'),"a")
             file.write(str(score)+","+name+"\n")
             file.close() 
                         
