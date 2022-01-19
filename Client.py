@@ -164,7 +164,7 @@ class Game:
         if self.flag_warning2 == True:
             WIN.blit(self.txt_warning2,(self.rect_input_box.x-175, self.rect_input_box.y-50))
         if self.flag_same == True:
-            WIN.blit(self.txt_same,(self.rect_input_box.x-175, self.rect_input_box.y-50))
+            WIN.blit(self.txt_same,(self.rect_input_box.x-50, self.rect_input_box.y-50))
         pygame.display.update()
 
 
