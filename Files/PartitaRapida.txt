@@ -124,7 +124,7 @@ In quale anno Napoleone divento' imperatore?
 1812
 1794
 1804
-In quanti settori era divisa Berlino dopo la WW2?
+In quanti settori fu divisa Berlino dopo la WW2?
 4
 3
 2
@@ -148,7 +148,7 @@ In quale anno sali' al trono la Regina Elisabetta II?
 1932
 1952
 1952
-Che forma di governo é presente in Corea del Nord?
+Che forma di governo e' presente in Corea del Nord?
 Necrocrazia
 Democrazia
 Oclocrazia
@@ -213,7 +213,7 @@ Alan Touring
 Steve Jobs
 Bill Gates
 Federico Faggin
-Federico Faggin 
+Federico Faggin
 Quale tra questi sistemi operativi e' piu' vecchio?
 Windows Nashville
 Windows 95
@@ -232,7 +232,7 @@ In quale anno e' stato rilasciato il Nokia 3310?
 1998
 2004
 2000
-In quanti strati é diviso il modello tcp/ip?
+In quanti strati e' diviso il modello tcp/ip?
 7
 2
 5
