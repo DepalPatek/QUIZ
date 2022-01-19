@@ -1,0 +1,240 @@
+Da quanti stati sono formati gli USA?
+45
+50
+55
+60
+50
+Rispetto a Roma, New york si trova piu' a:
+Sud-est
+Nord-est
+Sud-ovest
+Nord-ovest
+Sud-ovest
+Quale tra queste citta' non si trova in Lombardia?
+Verona
+Cremona
+Milano
+Bergamo
+Verona
+Quanti fusi orari ha la Russia?
+13
+11
+9
+7
+11
+Quale tra questi stati non e' in Oceania?
+Indonesia
+Papua nuova Guinea
+Isole Salomone
+Nuova Zelanda
+Indonesia
+Quale tra questi e' il confine piu' lungo?
+Argentina-Cile
+Cina-Russia
+Cina-Mongolia
+Kazakistan-Russia
+Kazakistan-Russia
+In quale citta' e' stata creata la paella?
+Barcellona
+Valencia
+Madrid
+Siviglia
+Valencia
+Qual e' il deserto piu' grande del mondo?
+Sahara
+Gobi
+Kalahari
+Antartide
+Antartide
+In quale nazione si trova il monte Kilimangiaro?
+Tanzania
+Kenya
+Ruanda
+Etiopia
+Tanzania
+In quale stato si trova la citta' di Austin?
+Illinois
+California
+Texas
+Arizona
+Texas
+Quale tra questi e' il gas piú leggero?
+Uranio
+Ossigeno
+Idrogeno
+Elio
+Elio
+Qual e' il pianeta piu' vicino al sole?
+Mercurio
+Terra
+Marte
+Giove
+Mercurio
+Quanti denti ha un essere umano adulto?
+26
+33
+32
+41
+32
+Qual e' il pianeta piu' grande del sistema solare?
+Nettuno
+Terra
+Plutone
+Giove
+Giove
+Cosa usano le api per creare il miele?
+Nettare
+Polline
+Fiori
+Zucchero
+Nettare
+Qual e' il gruppo sanguigno piu' raro?
+AB positivo
+AB negativo
+0 negativo
+A positivo
+AB negativo
+Qual e' il piu' grande animale terrestre conosciuto?
+Giraffa
+Balenottera azzurra
+Elefante
+Struzzo
+Elefante
+Quanto tempo sopravvive un globulo rosso umano?
+1 giorno
+120 giorni
+pochi minuti
+40 giorni
+120 giorni
+Quanti elementi ci sono nella tavola periodica?
+118
+117
+125
+98
+118
+Quanti cuori ha un polpo?
+1
+4
+3
+5
+3
+In quale anno Napoleone divento' imperatore?
+1799
+1804
+1812
+1794
+1804
+In quanti settori era divisa Berlino dopo la WW2?
+4
+3
+2
+1
+4
+Quale fu il primo paese ad adottare il Suffragio Universale?
+Svezia
+Regno Unito
+Nuova Zelanda
+Stati Uniti
+Nuova Zelanda
+Quanto duro' la guerra dei cent'anni?
+76 anni
+116 anni
+100 anni
+63 anni
+116 anni
+In quale anno sali' al trono la Regina Elisabetta II?
+1946
+1967
+1932
+1952
+1952
+Che forma di governo é presente in Corea del Nord?
+Necrocrazia
+Democrazia
+Oclocrazia
+Monarchia
+Necrocrazia
+In che mese mori' Giulio Cesare?
+Novembre
+Maggio
+Marzo
+Agosto
+Marzo
+In quante guerre sono stati coinvolti gli USA dopo la WW2?
+7
+11
+17
+14
+11
+Quale fu l'ultimo paese ad abolire la tratta degli schiavi?
+Gran Bretagna
+Francia
+USA
+Brasile
+Brasile
+Quante capitali ha avuto l'Italia dopo l'unificazione?
+5
+2
+3
+1
+5
+Quale tra questi linguaggi non é Object Oriented?
+C++
+Java
+Ruby
+C
+C
+Quale tra questi network copre un area piu' vasta?
+LAN
+WAN
+MAN
+PAN
+WAN
+Quale azienda costrui' il primo Personal Computer?
+Olivetti
+Microsoft
+Motorola
+Apple
+Olivetti
+Da quale azienda e' stato sviluppato l'Unreal Engine?
+Beteshda
+Ubisoft
+Epic Games
+Rockstar Games
+Epic Games
+Quale tra questi e' un componente funzionale della CPU?
+ALU 
+AGP
+RAM
+ROM
+ALU
+Chi invento' il primo microprocessore?
+Alan Touring
+Steve Jobs
+Bill Gates
+Federico Faggin
+Federico Faggin 
+Quale tra questi sistemi operativi e' piu' vecchio?
+Windows Nashville
+Windows 95
+Windows 7
+Windows XP
+Windows 95
+Quale tra queste aziende e' la piu' vecchia?
+Activision
+Amazon
+Blizzard
+Ubisoft
+Activision
+In quale anno e' stato rilasciato il Nokia 3310?
+2002
+2000
+1998
+2004
+2000
+In quanti strati é diviso il modello tcp/ip?
+7
+2
+5
+4
+4
