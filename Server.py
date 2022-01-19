@@ -62,6 +62,7 @@ def threaded_client(connection):
                     Replacement = line.replace(name, name)
                     readthefile = Replacement
                     file.writelines(readthefile)
+                    file.truncate(0)
                     file.close()
                 else :
                     file.write(str(score)+","+name.upper()+"\n")
