@@ -4,21 +4,21 @@ from _thread import *
 import random
 import time
 
-ServerSocket = socket.socket()
-host = 'localhost'
-port = 6716
-ThreadCount = 0
+ServerSocket = socket.socket() #dichiarazione della variabile ServerSocket come socket
+host = 'localhost' #dichiaro l'ip (localhost) utilizzato per il socket
+port = 6716 #porta su cui il client deve connettersi
+ThreadCount = 0 
 try:
-    ServerSocket.bind((host, port))
+    ServerSocket.bind((host, port)) #creazione del socket
 except socket.error as e:
     print(str(e))
 
-print('Waiting for a Connection..')
+print('Waiting for a Connection..') # attesa di una connessione di un client
 ServerSocket.listen(5)
 
 
 def threaded_client(connection):
-    threaded_client.name = connection.recv(2048)
+    threaded_client.name = connection.recv(2048) #
     
     file = open(os.path.join('Files',"score.txt"),"r")
     checklist = file.readlines()
