@@ -25,6 +25,11 @@ GOLD = [255,215,0]
 SILVER = [192,192,192]
 BRONZE = [205,127,50]
 
+
+SUONO_CLICK = pygame.mixer.Sound(os.path.join('Assets','click.wav'))                        #SUONI
+SUONO_RISPOSTA_CORRETTA = pygame.mixer.Sound(os.path.join('Assets','risposta_giusta.wav'))
+SUONO_RISPOSTA_SBAGLIATA = pygame.mixer.Sound(os.path.join('Assets','risposta_sbagliata.wav'))
+
 FPS = 60
 
 FONT_NEONLED = pygame.font.Font(os.path.join('Fonts','NEONLEDLight.otf'), 65) #font e grandezza dei testi
@@ -71,6 +76,7 @@ class Game:
                     pygame.quit()                       #chiudo il gioco
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if self.pulsante_inizia_rect.collidepoint(event.pos):
+                        SUONO_CLICK.play()
                         self.run = False
             self.UltimoFrame, self.video_immagine = self.video.read()               #acquisico un frame
             self.count+=1
@@ -123,6 +129,7 @@ class Game:
                             self.run = False
                         else:
                             self.flag_warning = True
+                            self.flag_same = False
                 if event.type == pygame.KEYDOWN:                    #controllo se l'utente sta digitando
                     if event.key == pygame.K_BACKSPACE:             #controllo se vuole cancellare un carattere
                         self.input_box = self.input_box[:-1]
@@ -142,6 +149,7 @@ class Game:
                     self.txt_input_box = FONT_NEONLED_SMALL.render(self.input_box, True, LIGHT_BLUE)
             
             self.drawGetNickname()
+        SUONO_CLICK.play()
         self.ClientSocket.send(str.encode(self.input_box)) #invio il nickname al server
         time.sleep(0.01)
         if self.ClientSocket.recv(2048).decode('utf-8') == "1":
@@ -373,7 +381,10 @@ class Game:
         self.ClientSocket.send(str.encode(self.risposta))
         time.sleep(0.001)
         if self.ClientSocket.recv(2048).decode('utf-8') == "Giusto":
+            SUONO_RISPOSTA_CORRETTA.play()
             self.score+=10
+        else:
+            SUONO_RISPOSTA_SBAGLIATA.play()
 
 
 
@@ -492,6 +503,7 @@ class PulsanteIndietro:                 #classe che gestisce il pulsante torna i
     def premuto(self,event):            #vedo se é premuto
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.rect.collidepoint(event.pos):
+                SUONO_CLICK.play()
                 return True
         else:
             return False
@@ -524,6 +536,7 @@ class Pulsanti:             #classe che gestisce i pulsanti
     def premuto(self,event):            #vedo se é premuto
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.rect.collidepoint(event.pos):
+                SUONO_CLICK.play()
                 return True
         else:
             return False
