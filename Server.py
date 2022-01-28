@@ -44,23 +44,23 @@ def threaded_client(connection):
                     c = random.choice(domandList)
                     domandainvio = mylist[c]
                     domandList.remove(c)
-                    time.sleep(0.01)
+                    time.sleep(0.05)
                     connection.send(domandainvio.encode('utf-8'))
                     b = c
                     for x in range(4):
                             b= b +1
                             inviorisposta = mylist[b]
-                            time.sleep(0.01)
+                            time.sleep(0.05)
                             connection.send(inviorisposta.encode('utf-8'))
                     veraRisp = mylist[c+5]
                     veraRisp = veraRisp.rstrip("\n")
                     b = c
                     controlloRisp = connection.recv(2048)
                     if controlloRisp.decode('utf-8') == veraRisp:
-                        time.sleep(0.01)
+                        time.sleep(0.05)
                         connection.send(str.encode("Giusto"))
                     elif controlloRisp.decode('utf-8') != veraRisp:
-                        time.sleep(0.01)
+                        time.sleep(0.05)
                         connection.send(str.encode("Falso"))  
             score = connection.recv(2048)
             score = score.decode('utf-8')       
@@ -71,7 +71,7 @@ def threaded_client(connection):
             file.close() 
                         
         elif whatToDo.decode('utf-8') == "2" : #partita per argomento
-            time.sleep(0.01)
+            time.sleep(0.05)
             whatToDo2 = connection.recv(2048)
             if whatToDo2.decode('utf-8') == "1" :
                 with open(os.path.join('Files','Scienza.txt')) as k:
@@ -92,23 +92,23 @@ def threaded_client(connection):
                     c = random.choice(domandList)
                     domandainvio = listaGeneri[c]
                     domandList.remove(c)
-                    time.sleep(0.01)
+                    time.sleep(0.05)
                     connection.send(domandainvio.encode('utf-8'))
                     b = c
                     for x in range(4):
                             b= b +1
                             inviorisposta = listaGeneri[b]
-                            time.sleep(0.01)
+                            time.sleep(0.05)
                             connection.send(inviorisposta.encode('utf-8'))
                     veraRisp = listaGeneri[c+5]
                     veraRisp = veraRisp.rstrip("\n")
                     b = c
                     controlloRisp = connection.recv(2048)
                     if controlloRisp.decode('utf-8') == veraRisp:
-                        time.sleep(0.01)
+                        time.sleep(0.05)
                         connection.send(str.encode("Giusto"))
                     elif controlloRisp.decode('utf-8') != veraRisp:
-                        time.sleep(0.01)
+                        time.sleep(0.05)
                         connection.send(str.encode("Falso"))                
 
         elif whatToDo.decode('utf-8') == "3" : #Classifica
